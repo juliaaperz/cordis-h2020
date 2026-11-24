@@ -1,0 +1,11 @@
+# Los datos NO se suben al repositorio (lo pide el enunciado).
+# Cada una copia projects.xlsx y SciVocCodes.xlsx en la carpeta data/
+data/
+
+# Ficheros temporales de Python y Jupyter
+__pycache__/
+.ipynb_checkpoints/
+
+# Embeddings y modelos grandes (se generan con los notebooks)
+*.npy
+*.pt

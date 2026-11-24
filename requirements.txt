@@ -1,0 +1,10 @@
+pandas
+openpyxl
+numpy
+matplotlib
+scikit-learn
+spacy
+gensim
+wordcloud
+torch
+transformers
