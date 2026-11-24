@@ -1,0 +1,5 @@
+nivel,conjunto,clase predicha,accuracy,macro-F1
+nivel2,val,biological sciences,0.108,0.005
+nivel2,test,biological sciences,0.108,0.005
+nivel1,val,natural sciences,0.392,0.094
+nivel1,test,natural sciences,0.392,0.094
