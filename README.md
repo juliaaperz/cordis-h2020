@@ -130,7 +130,45 @@ etiquetas y no a los modelos.
 ### 6.4. Análisis de errores
 
 ## 7. Extensión: ¿ayuda la jerarquía?
-<!-- Lucía Mora -->
+
+Comparamos una regresión logística que predice directamente las categorías de nivel 2
+con una cascada que predice la raíz y aplica una regresión logística específica de esa raíz.
+Ambas usan TF-IDF de unigramas, ajustado solo con entrenamiento, y la configuración
+seleccionada en validación en el notebook 02 (C=10 y pesos balanceados).
+La extensión parte del notebook 06 compartido por el equipo y reutiliza el
+preprocesamiento del notebook 02. Los clasificadores planos se volvieron a
+entrenar para esta comparación. La ejecución se realizó con scikit-learn 1.9.1.
+
+| Modelo | val accuracy | val macro-F1 | test accuracy | test macro-F1 |
+| --- | --- | --- | --- | --- |
+| plano | 0.520 | 0.397 | 0.503 | 0.377 |
+| jerárquico | 0.485 | 0.361 | 0.471 | 0.343 |
+| jerárquico con raíz verdadera (oráculo) | 0.721 | 0.598 | 0.706 | 0.566 |
+
+![Macro-F1 en test](figuras/extension_comparacion.png)
+
+En prueba, la diferencia de macro-F1 (jerárquico menos plano) fue -0.035.
+El intervalo percentil del 95 % con 1.000 remuestreos emparejados fue
+[-0.047, -0.021]. El intervalo favorece al clasificador plano.
+
+La raíz se predijo correctamente en el 65.1 % de los
+proyectos de prueba. Cuando falla la raíz, el segundo clasificador no puede elegir
+la subcategoría correcta. Este caso representa 1673 de los
+2537 errores del jerárquico. Con la raíz verdadera, su macro-F1
+fue 0.566, una diferencia de +0.224 respecto a la
+cascada. Entre los errores del plano, el
+65.3 % cambió de raíz.
+En la cascada, esa proporción fue del
+65.9 %.
+
+Mayores subidas de F1 por clase: health sciences (+0.031), history and archaeology (+0.029), nanotechnology (+0.016). Mayores bajadas: other engineering and technologies (-0.183), educational sciences (-0.176), animal and dairy science (-0.114).
+Estas diferencias por clase son descriptivas y pueden fluctuar en clases con pocos ejemplos.
+
+![Cambios de F1 por clase](figuras/extension_diferencia_por_clase.png)
+
+La comparación mide esta cascada con TF-IDF y regresión logística sobre una única
+partición. Además, cada proyecto se evalúa contra una sola etiqueta EuroSciVoc,
+aunque algunos proyectos pertenezcan a varias áreas.
 
 ## 8. Conclusiones y limitaciones
 
