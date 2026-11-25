@@ -8,3 +8,4 @@ gensim
 wordcloud
 torch
 transformers
+nltk
